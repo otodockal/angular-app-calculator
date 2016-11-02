@@ -461,7 +461,7 @@ describe('Service: Calculator', () => {
     it('formatCalculations - one item', inject([CalculatorService], (service: CalculatorService) => {
 
         const data = [
-            { type: 'number', value: '1' },   
+            { type: 'number', value: '1' },
         ]
 
         const res = service.formatCalculations(data)
@@ -527,21 +527,6 @@ describe('Service: Calculator', () => {
 
     }));
 
-    it('isDotVariantPresent - action', inject([CalculatorService], (service: CalculatorService) => {
-
-        const data = [
-            { type: 'number', value: '5' },
-            { type: 'operator', value: '-' },
-            { type: 'number', value: '3' },
-            { type: 'number', value: '.' },
-        ]
-
-        const res = service.isDotVariantPresent(data, { type: 'action', value: '=' })
-
-        expect(res).toEqual(true)
-
-    }));
-
     it('isDotVariantPresent - it is not', inject([CalculatorService], (service: CalculatorService) => {
 
         const data = [
@@ -577,11 +562,11 @@ describe('Service: Calculator', () => {
     it('validateNumber - is not a number', inject([CalculatorService], (service: CalculatorService) => {
 
         try {
-            
+
             service.validateNumber('1.2.3')
-        
+
         } catch (error) {
-            
+
             expect(error.toString()).toBe('Error: "1.2.3" is not a number!')
         }
 
@@ -622,6 +607,49 @@ describe('Service: Calculator', () => {
     it('hasOperator - it has not', inject([CalculatorService], (service: CalculatorService) => {
 
         const res = service.hasOperator('12')
+
+        expect(res).toBe(false)
+
+    }));
+
+    it('getButtonByValue', inject([CalculatorService], (service: CalculatorService) => {
+
+        const res = service.getButtonByValue('<')
+
+        expect(res).toEqual({ type: 'action', value: '<' })
+
+    }));
+
+    it('getButtonByValue - falsy test', inject([CalculatorService], (service: CalculatorService) => {
+
+        const res = service.getButtonByValue('123')
+
+        expect(res).toBe(undefined)
+
+    }));
+
+    it('containsOnlyNumber', inject([CalculatorService], (service: CalculatorService) => {
+
+        const data = [
+            { type: 'number', value: '5' },
+            { type: 'number', value: '3' },
+        ]
+
+        const res = service.containsOnlyNumber(data)
+
+        expect(res).toBe(true)
+
+    }));
+
+    it('containsOnlyNumber - falsy test', inject([CalculatorService], (service: CalculatorService) => {
+
+        const data = [
+            { type: 'number', value: '5' },
+            { type: 'number', value: '3' },
+            { type: 'operator', value: '*' },
+        ]
+
+        const res = service.containsOnlyNumber(data)
 
         expect(res).toBe(false)
 

@@ -14,6 +14,7 @@ export class CalculatorComponent {
     calculations: Button[] = [];
     calculationsFormatted = '0';
     result = '0';
+    prevEqual = false;
 
     constructor(public service: CalculatorService) { }
 
@@ -21,12 +22,16 @@ export class CalculatorComponent {
 
         try {
 
+            // button "C"
             if (button.type === 'action' && button.value.toLowerCase() === 'c') {
 
                 return this.initState()
             }
 
+            // button "<"
             if (button.type === 'action' && button.value === '<') {
+
+                console.log('delete step');                
 
                 this.calculations = this.service.deleteStep(this.calculations)
 
@@ -36,7 +41,18 @@ export class CalculatorComponent {
                 }
             }
 
-            // check situations like: '..', '.<', '.+'
+            // button type number & prev button "=" 
+            if (this.prevEqual) {
+
+                if (button.type === 'number') {
+
+                    this.initState()
+                }
+
+                this.prevEqual = false;
+            }
+
+            // check situations like: '..', '.+'
             if (this.service.isDotVariantPresent(this.calculations, button)) {
             
                 return;
@@ -50,6 +66,7 @@ export class CalculatorComponent {
 
             // last operator wins - pick last one
             this.calculations = this.service.pickLastOneOperator(this.calculations)
+
             // format formula
             this.calculationsFormatted = this.service.formatCalculations(this.calculations)
 
@@ -65,11 +82,13 @@ export class CalculatorComponent {
                 if (button.value === '=') {
 
                     this.initCalculationFromResult(this.result)
+
+                    this.prevEqual = true;
                 }
             }
             
             // on first collection of numbers like 4343443
-            if (this.containsOnlyNumber(this.calculations) && button.type === 'number') {
+            if (this.service.containsOnlyNumber(this.calculations) && button.type === 'number') {
 
                 this.result = this.calculations.reduce((prev, curr) => prev + '' + curr.value, '')
             }
@@ -110,11 +129,5 @@ export class CalculatorComponent {
         ]
         this.calculationsFormatted = this.service.formatCalculations(this.calculations)
     }
-
-    private containsOnlyNumber(calculations: Button[]): boolean {
-
-        return !this.calculations.some(val => val.type === 'operator')
-    }
-
 
 }

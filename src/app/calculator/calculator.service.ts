@@ -47,11 +47,6 @@ export class CalculatorService {
         189: '=',
     }
 
-    getButtonByValue(value: string) {
-
-        return this.buttons.find(item => item.value === value)
-    }
-
     // makeResult
     // -2 * 5 / 2 - 3 + 4 * 2
     calculateFormula(calculations: Button[]): string {
@@ -278,7 +273,7 @@ export class CalculatorService {
 
         if (list.pop().value === '.') {
 
-            if (button.value === '.' || button.type === 'operator' || button.type === 'action') {
+            if (button.value === '.' || button.type === 'operator') {
 
                 return true;
             }
@@ -298,6 +293,16 @@ export class CalculatorService {
     hasOperator(item: string) {
 
         return item.includes('+', 0) || item.includes('-', 0) || item.includes('*', 0) || item.includes('/', 0)
+    }
+
+    getButtonByValue(value: string) {
+
+        return this.buttons.find(item => item.value === value)
+    }
+
+    containsOnlyNumber(calculations: Button[]) {
+
+        return !calculations.some(val => val.type === 'operator')
     }
 
 }

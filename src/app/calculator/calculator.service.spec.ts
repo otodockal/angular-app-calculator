@@ -91,7 +91,7 @@ describe('Service: Calculator', () => {
 
         } catch (err) {
 
-            expect(err.toString()).toBe('Error: DIV 0 is forbidden!')
+            expect(err.toString()).toBe('Error: #DIV/0 error!')
         }
 
     }));
@@ -326,7 +326,7 @@ describe('Service: Calculator', () => {
 
         } catch (err) {
 
-            expect(err.toString()).toBe('Error: DIV 0 is forbidden!')
+            expect(err.toString()).toBe('Error: #DIV/0 error!')
         }
 
     }));

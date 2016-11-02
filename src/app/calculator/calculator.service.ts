@@ -137,7 +137,7 @@ export class CalculatorService {
         // check div 0
         if (intermediate.some(val => val === '/0')) {
 
-            throw new Error('DIV 0 is forbidden!')
+            throw new Error('#DIV/0 error!')
         }
 
         // check if it starts with slash or star

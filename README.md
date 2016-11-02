@@ -3,6 +3,12 @@ Simple calculator written in Angular 2
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
+## TODO
+- keybinding for operators
+- normalize numbers in formatted calculations e.g.: 0006 to 6
+- change behavior after click on "=".
+    - consider replacing the result instead of current concatenation
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

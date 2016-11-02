@@ -1,7 +1,7 @@
 
-#calculator {
-    width: 200px;
-    height: 300px;
+:host {
+    display: block;
+    width: 400px;
     margin-top: 20px;
 }
 
@@ -20,13 +20,12 @@ ul#keypad {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    width: 200px;
 }
 ul#keypad li {
     float: left;
 }
 ul#keypad button {
-    width: 50px;
+    width: 100px;
     height: 50px;
     border: 1px solid #fff;
     color: #fff;
@@ -39,5 +38,5 @@ ul#keypad button.action {
     background: #2196f3;
 }
 ul#keypad button.wide {
-    width: 100px;
+    width: 200px;
 }

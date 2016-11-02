@@ -3,7 +3,6 @@ import { CalculatorService, Button } from './calculator.service';
 
 // TODO: consider these changes
 // - after equeal "=" user clicks on number, number should replace instead of concat
-// - normalize numbers in formater like 06 on 6
 
 @Component({
     selector: 'app-calculator',

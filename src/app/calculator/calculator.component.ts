@@ -1,9 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CalculatorService, Button } from './calculator.service';
 
-// TODO: consider these changes
-// - after equeal "=" user clicks on number, number should replace instead of concat
-
 @Component({
     selector: 'app-calculator',
     templateUrl: './calculator.component.html',
@@ -30,8 +27,6 @@ export class CalculatorComponent {
 
             // button "<"
             if (button.type === 'action' && button.value === '<') {
-
-                console.log('delete step');                
 
                 this.calculations = this.service.deleteStep(this.calculations)
 

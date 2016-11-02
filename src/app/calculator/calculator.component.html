@@ -1,0 +1,22 @@
+
+<div id="calculator">
+
+    <div id="calculations">
+        {{calculationsFormatted}}
+    </div>
+    <div id="result">
+        {{result}}
+    </div>
+
+    <ul id="keypad">
+        <li *ngFor="let button of service.buttons">
+            <button 
+                (click)="action(button)" 
+                [class.operator]="button.type === 'operator'"
+                [class.action]="button.type === 'action'"
+                [class.wide]="button.wide">
+                {{button.value}}
+            </button>
+        </li>
+    </ul>
+</div>

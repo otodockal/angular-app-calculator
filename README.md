@@ -3,6 +3,9 @@ Simple calculator written in Angular 2
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
+## App
+- https://otodockal.github.io/angular-app-calculator/
+
 ## TODO
 - keybinding for operators
 - normalize numbers in formatted calculations e.g.: 0006 to 6
